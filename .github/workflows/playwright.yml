@@ -17,6 +17,8 @@ jobs:
       run: npm ci
     - name: Set up foundry (includes anvil)
       uses: foundry-rs/foundry-toolchain@v1
+    - name: Build application
+      run: npm run build:turbo
     - name: Start anvil fork in base sepolia
       run: anvil --fork-url "https://sepolia.base.org" --port 8545 &
     - name: Install Playwright Browsers
