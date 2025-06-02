@@ -41,5 +41,5 @@ export const config = getDefaultConfig({
       wallets: [mockWallet],
     },
   ],
-  ssr: !isE2eTestEnabled,
+  ssr: isE2eTestEnabled,
 });
