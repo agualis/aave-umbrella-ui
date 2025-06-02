@@ -7,7 +7,7 @@ test("Full flow", async ({ page }) => {
 
   await connectToMockWallet(page);
 
-  await stakeOneEth(page);
+  await stakeEth(page);
 
   await returnToDashboard(page);
 
@@ -30,11 +30,11 @@ async function connectToMockWallet(page: Page) {
   await page.getByTestId("rk-wallet-option-mock").click();
 }
 
-async function stakeOneEth(page: Page) {
+async function stakeEth(page: Page) {
   // ETH is in the last row in the table
   await page.getByRole("link", { name: "Stake" }).last().click();
 
-  await page.getByRole("textbox", { name: "0.000" }).fill("1");
+  await page.getByRole("textbox", { name: "0.000" }).fill("2");
   await page.getByRole("button", { name: "Wrap" }).click();
   await page.getByRole("button", { name: "Approve" }).click();
   await page.getByRole("button", { name: "Stake" }).click();
