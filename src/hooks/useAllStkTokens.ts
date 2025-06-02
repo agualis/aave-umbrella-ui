@@ -52,11 +52,17 @@ export const useAllStkTokens = () => {
     },
   });
 
+  if (rest.error) console.log("Error fetching all aggregated data:", rest.error);
+  if (rest.isSuccess) console.log("Fetched all aggregated data successfully", data);
+  // if (owner) console.log({ owner });
+
   return {
     data: useMemo(() => {
-      if (!data || !reserves) return undefined;
+      if (!reserves) return undefined;
+      if (!data && !isE2eTestEnabled) return undefined;
 
-      const [aggregatedData, pathData, userAggregatedData, userPathData] = isE2eTestEnabled ? allStkTokensMock : data;
+      const [aggregatedData, pathData, userAggregatedData, userPathData] = isE2eTestEnabled ? allStkTokensMock : data!;
+      console.log("Aggregated data:", aggregatedData);
       // const [aggregatedData, pathData, userAggregatedData, userPathData] = data;
 
       return aggregatedData
@@ -153,7 +159,7 @@ export const useAllStkTokens = () => {
           } satisfies StkToken;
         })
         .filter((stkToken) => !!stkToken);
-    }, [reserves, data]),
+    }, [data, reserves]),
     isLoading: isReservesLoading || isLoading,
     ...rest,
   } as const;

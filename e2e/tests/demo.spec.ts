@@ -34,7 +34,7 @@ async function stakeEth(page: Page) {
   // ETH is in the last row in the table
   await page.getByRole("link", { name: "Stake" }).last().click();
 
-  await page.getByRole("textbox", { name: "0.000" }).fill("2");
+  await page.getByRole("textbox", { name: "0.000" }).fill("1");
   await page.getByRole("button", { name: "Wrap" }).click();
   await page.getByRole("button", { name: "Approve" }).click();
   await page.getByRole("button", { name: "Stake" }).click();
