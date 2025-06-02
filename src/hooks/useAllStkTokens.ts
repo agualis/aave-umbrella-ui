@@ -46,14 +46,18 @@ export const useAllStkTokens = () => {
     address: umbrellaDataAggregationHelper,
     functionName: "getAllAggregatedData",
     args: [umbrellaHelper, oracle, owner ?? ZERO_CONTRACT_ADDRESS],
+    query: {
+      // getAllAggregatedData is too slow in e2e tests, so we mock it
+      enabled: !isE2eTestEnabled,
+    },
   });
 
   return {
     data: useMemo(() => {
       if (!data || !reserves) return undefined;
 
-      // const [aggregatedData, pathData, userAggregatedData, userPathData] = isE2eTestEnabled ? allStkTokensMock : data;
-      const [aggregatedData, pathData, userAggregatedData, userPathData] = data;
+      const [aggregatedData, pathData, userAggregatedData, userPathData] = isE2eTestEnabled ? allStkTokensMock : data;
+      // const [aggregatedData, pathData, userAggregatedData, userPathData] = data;
 
       return aggregatedData
         .map(({ stakeTokenData, rewardsTokenData, totalAssets, targetLiquidity }, index) => {
