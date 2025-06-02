@@ -6,8 +6,7 @@ on:
     branches: [ main]
 
 env:
-  NEXT_PUBLIC_BASE_SEPOLIA: 'https://base-sepolia.g.alchemy.com/v2/0fWVFS_mrORIl5Ge3y9NFX1zZU1LbvDl'
-  # NEXT_PUBLIC_BASE_SEPOLIA: ${{ secrets.NEXT_PUBLIC_BASE_SEPOLIA }}
+  NEXT_PUBLIC_BASE_SEPOLIA: ${{ secrets.NEXT_PUBLIC_BASE_SEPOLIA }}
   NEXT_PUBLIC_E2E_TEST_ENABLED: "true"
 
 jobs:
