@@ -52,7 +52,8 @@ export const useAllStkTokens = () => {
     data: useMemo(() => {
       if (!data || !reserves) return undefined;
 
-      const [aggregatedData, pathData, userAggregatedData, userPathData] = isE2eTestEnabled ? allStkTokensMock : data;
+      // const [aggregatedData, pathData, userAggregatedData, userPathData] = isE2eTestEnabled ? allStkTokensMock : data;
+      const [aggregatedData, pathData, userAggregatedData, userPathData] = data;
 
       return aggregatedData
         .map(({ stakeTokenData, rewardsTokenData, totalAssets, targetLiquidity }, index) => {
