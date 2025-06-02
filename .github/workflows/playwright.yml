@@ -4,6 +4,10 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
+env:
+  NEXT_PUBLIC_BASE_SEPOLIA: ${{ secrets.NEXT_PUBLIC_BASE_SEPOLIA }}
+
 jobs:
   test:
     timeout-minutes: 60
@@ -20,7 +24,7 @@ jobs:
     - name: Build application
       run: npm run build:turbo
     - name: Start anvil fork in base sepolia
-      run: anvil --fork-url "https://sepolia.base.org" --port 8545 &
+      run: anvil --fork-url "${{ env.NEXT_PUBLIC_BASE_SEPOLIA }}" --port 8545 &
     - name: Install Playwright Browsers
       run: npm run playwright:install:chromium # CI only tests in chromium
     - name: Run Playwright tests
