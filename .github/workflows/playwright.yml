@@ -25,7 +25,7 @@ jobs:
     - name: Build application
       run: npm run build:turbo
     - name: Start anvil fork in base sepolia
-      run: anvil --fork-url "${{ env.NEXT_PUBLIC_BASE_SEPOLIA }}" --port 8545 &
+      run: anvil --fork-url "${{ env.NEXT_PUBLIC_BASE_SEPOLIA:-https://sepolia.base.org }}" --port 8545 &
     - name: Install Playwright Browsers
       run: npm run playwright:install:chromium # CI only tests in chromium
     - name: Run Playwright tests
