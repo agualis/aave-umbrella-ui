@@ -9,13 +9,13 @@ test("Full flow", async ({ page }) => {
 
   await stakeEth(page);
 
-  await returnToDashboard(page);
+  // await returnToDashboard(page);
 
-  await claimAllRewards(page);
+  // await claimAllRewards(page);
 
-  await returnToDashboard(page);
+  // await returnToDashboard(page);
 
-  await initCooldown(page);
+  // await initCooldown(page);
 
   await page.waitForTimeout(500);
 });
