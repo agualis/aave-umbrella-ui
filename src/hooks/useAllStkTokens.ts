@@ -15,6 +15,8 @@ import {
   StkTokenPathData,
   UserPathData,
 } from "@/utils/web3";
+import { allStkTokensMock } from "@e2e/config/__mocks__/allStkTokens.mock";
+import { isE2eTestEnabled } from "@e2e/config/e2e.constants";
 import { useMemo } from "react";
 import { useAccount, useReadContract } from "wagmi";
 
@@ -50,7 +52,7 @@ export const useAllStkTokens = () => {
     data: useMemo(() => {
       if (!data || !reserves) return undefined;
 
-      const [aggregatedData, pathData, userAggregatedData, userPathData] = data;
+      const [aggregatedData, pathData, userAggregatedData, userPathData] = isE2eTestEnabled ? allStkTokensMock : data;
 
       return aggregatedData
         .map(({ stakeTokenData, rewardsTokenData, totalAssets, targetLiquidity }, index) => {
