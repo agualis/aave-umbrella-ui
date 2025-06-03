@@ -24,7 +24,7 @@ jobs:
     - name: Set up foundry (includes anvil)
       uses: foundry-rs/foundry-toolchain@v1
     - name: Start anvil fork in base sepolia
-      run: anvil --fork-url "${{ env.NEXT_PUBLIC_BASE_SEPOLIA || 'https://sepolia.base.org' }}" --port 8545 &
+      run: anvil --fork-url "${{ env.NEXT_PUBLIC_BASE_SEPOLIA || 'https://sepolia.base.org' }}" --port 8545 --disable-block-gas-limit &
     - name: Warm up anvil
       run: npm run warmup:anvil
     - name: Build application
