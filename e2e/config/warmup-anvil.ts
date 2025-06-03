@@ -9,6 +9,12 @@ const { umbrellaDataAggregationHelper, umbrellaHelper, oracle } = baseSepoliaMar
 
 const owner = defaultAnvilAccount;
 
+/**
+ * Script to warm up Anvil by executing the `getAllAggregatedData` function
+ * from the `umbrellaDataAggregationHelper` contract.
+ * This is useful for preloading data into the cache before running tests because it is an expensive operation that would make tests fail due to timeout.
+ * ⚠️ Notice that anvil fork must be run with --disable-block-gas-limit flag to avoid hitting block gas limits when calling getAllAggregatedData.
+ */
 async function warmupAnvil() {
   console.log("🔥 Starting Anvil warmup...");
 
