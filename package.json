@@ -18,7 +18,6 @@
     "playwright:install": "playwright install --with-deps",
     "playwright:install:chromium": "playwright install --with-deps chromium",
     "warmup:anvil": "tsx e2e/config/warmup-anvil.ts"
-    "playwright:install:chromium": "playwright install --with-deps chromium"
   },
   "lint-staged": {
     "**/*.{ts,tsx,js,jsx}": [
