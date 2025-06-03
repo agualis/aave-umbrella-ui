@@ -3,7 +3,7 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main]
+    types: [opened, synchronize]
 
 env:
   NEXT_PUBLIC_BASE_SEPOLIA: ${{ secrets.NEXT_PUBLIC_BASE_SEPOLIA }}
