@@ -40,6 +40,9 @@ async function stakeEth(page: Page) {
   await page.getByRole("button", { name: "Stake" }).click();
 
   await expect(page.getByRole("heading", { name: "Transaction completed!" })).toBeVisible();
+
+  // Wait to ensure that claimable rewards are available
+  await page.waitForTimeout(2000);
 }
 
 async function claimAllRewards(page: Page) {
