@@ -15,8 +15,6 @@ import {
   StkTokenPathData,
   UserPathData,
 } from "@/utils/web3";
-import { allStkTokensMock } from "@e2e/config/__mocks__/allStkTokens.mock";
-import { isE2eTestEnabled } from "@e2e/config/e2e.constants";
 import { useMemo } from "react";
 import { useAccount, useReadContract } from "wagmi";
 
@@ -46,20 +44,13 @@ export const useAllStkTokens = () => {
     address: umbrellaDataAggregationHelper,
     functionName: "getAllAggregatedData",
     args: [umbrellaHelper, oracle, owner ?? ZERO_CONTRACT_ADDRESS],
-    query: {
-      // getAllAggregatedData is too slow in e2e tests, so we mock it
-      // enabled: !isE2eTestEnabled,
-      enabled: true,
-    },
   });
 
   return {
     data: useMemo(() => {
-      if (!reserves) return undefined;
-      // if (!data && !isE2eTestEnabled) return undefined;
-      if (!data) return undefined;
+      if (!data || !reserves) return undefined;
 
-      const [aggregatedData, pathData, userAggregatedData, userPathData] = data!;
+      const [aggregatedData, pathData, userAggregatedData, userPathData] = data;
 
       return aggregatedData
         .map(({ stakeTokenData, rewardsTokenData, totalAssets, targetLiquidity }, index) => {
@@ -155,7 +146,7 @@ export const useAllStkTokens = () => {
           } satisfies StkToken;
         })
         .filter((stkToken) => !!stkToken);
-    }, [data, reserves]),
+    }, [reserves, data]),
     isLoading: isReservesLoading || isLoading,
     ...rest,
   } as const;
