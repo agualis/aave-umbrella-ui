@@ -44,7 +44,7 @@ async function stakeEth(page: Page) {
 
 async function claimAllRewards(page: Page) {
   await page.getByRole("link", { name: "Claim all" }).click();
-  await page.getByRole("button", { name: "Claim All Rewards" }).click();
+  await page.getByRole("button", { name: "Claim All" }).click();
   await expect(page.getByRole("heading", { name: "Transaction completed!" })).toBeVisible();
 }
 
